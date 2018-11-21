@@ -1,0 +1,18 @@
+.header-container {
+  position: fixed;
+  top: 0;
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // padding: 0.5rem;
+  width: 100%;
+  background-color: $off-black;
+  padding: 1rem 0;
+  z-index: 9;
+
+  .header-title {
+    color: white;
+    padding: 0 1rem;
+  }
+}

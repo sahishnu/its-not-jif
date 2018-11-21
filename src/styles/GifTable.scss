@@ -1,0 +1,35 @@
+.table-container {
+  margin-top: 6rem;
+  padding: 1rem;
+  .table {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .table-meta {
+    text-align: left;
+    color: white;
+  }
+
+  .more-container {
+    padding: 2rem;
+    .more-button {
+      width: 10rem;
+      height: 4rem;
+      color: white;
+      margin: 0 auto;
+      background-color: #EF626C;
+      transform: skew(12deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      .button-label {
+        transform: skew(-12deg);
+      }
+    }
+  }
+
+}
