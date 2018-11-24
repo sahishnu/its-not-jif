@@ -12,10 +12,17 @@ export function searchGifsAction (loadMore) {
 
     const currentState = getState();
     const searchReducerData = currentState.searchReducer;
+    const gifReducerData = currentState.gifReducer;
     const currentPageValue = searchReducerData.pageNumber;
     const currentSearchValue = searchReducerData.searchValue;
+    const currentFavoriteIds = gifReducerData.favorites.map(gif => gif.id);
     const gifData = await searchGifsAPI(currentSearchValue, currentPageValue);
-
+    gifData.data.forEach(gif => {
+      if (currentFavoriteIds.includes(gif.id)) {
+        gif.isFav = true;
+      }
+      return gif;
+    });
     if (loadMore) {
       dispatch({ type: GIF_DATA_ACTIONS.APPEND_GIFS, payload: { gifData: gifData.data, gifPaginateData: gifData.pagination } });
     } else {

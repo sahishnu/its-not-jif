@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import Home from '../views/Home';
+import Favorites from '../views/Favorites';
+import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
-import GifTable from './GifTable';
-
 class App extends Component {
   render() {
-    const { gifData } = this.props;
     return (
       <div className='App'>
         <Header />
-        {gifData.length && <GifTable />}
+        <Switch>
+          <Route path='/search' component={Home} />
+          <Route path='/favorites' component={Favorites} />
+          <Route path='/' component={Home} />
+        </Switch>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  gifData: state.gifReducer.gifData
-});
-
-export default connect(mapStateToProps, {})(App);
+export default App;

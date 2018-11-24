@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {searchGifsAction, updateSearchValueAction} from '../actions/searchActions';
-
+import { withRouter } from 'react-router';
 class SearchBox extends Component {
 
   submitSearch = () => {
     const { searchValue } = this.props;
     if (searchValue.length) {
       this.props.searchGifsAction();
+      this.props.history.push(`/search/${searchValue}`)
     }
   }
 
@@ -32,5 +33,5 @@ const mapStateToProps = state => ({
   searchValue: state.searchReducer.searchValue
 });
 
-export default connect(mapStateToProps, {searchGifsAction, updateSearchValueAction})(SearchBox);
+export default withRouter(connect(mapStateToProps, {searchGifsAction, updateSearchValueAction})(SearchBox));
 

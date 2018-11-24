@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-
+import { toggleFavGif } from '../actions/gifActions';
+import { connect } from 'react-redux';
+import ImageContainer from './ImageContainer';
 class GifBox extends Component {
 
   constructor (props) {
     super(props);
     this.state = {
       hover: false,
-      favorite: false
+      favorite: false,
+      hoverMessage: ''
     }
   }
 
@@ -14,11 +17,31 @@ class GifBox extends Component {
     this.setState(this.toggleHoverState);
   }
 
+  setHoverMessage = (message) => {
+    this.setState({ hoverMessage: message});
+    setTimeout(3000, this.setState({ hoverMessage: ''}));
+  }
+
   handleClickFavorte = () => {
-    this.setState(this.toggleFavoriteState);
+    this.setHoverMessage('Gif Favorited!');
+    this.setState(this.toggleFavoriteState, () => {
+      const gif = this.props.data;
+      this.props.toggleFavGif({
+        id: gif.id,
+        url: gif.url,
+        images: gif.images
+      });
+    });
+  }
+
+  componentDidMount () {
+    const { data } = this.props;
+
+    if (data.isFav) this.setState({ favorite: true });
   }
 
   handleClickCopyLink = () => {
+    this.setHoverMessage('Link Copied!');
     const { data } = this.props;
     const el = document.createElement('textarea');
     el.value = data.url;
@@ -42,7 +65,7 @@ class GifBox extends Component {
 
   render() {
     const { data } = this.props;
-    const { hover, favorite } = this.state;
+    const { hover, favorite, hoverMessage } = this.state;
 
     const starClasses = ['fa fa-star'];
     if (favorite) {
@@ -50,16 +73,18 @@ class GifBox extends Component {
     }
     return (
       <div onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} className='gif-box-container'>
-        {hover && <div className='gif-hover-box'>
+        {hover && <div className={'gif-hover-box' + (hover ? ' active' : '')}>
+          {hoverMessage && <div>{hoverMessage}</div>}
           <div className='hover-box-buttons'>
             <i onClick={this.handleClickCopyLink} className='fa fa-link'></i>
             <i onClick={this.handleClickFavorte} className={starClasses.join(' ')}></i>
           </div>
         </div>}
-        <img alt={`gif-id-${data.id}`} className='gif' src={data.images.fixed_height.url} />
+        <ImageContainer altText={data.title} source={data.images.fixed_height.url} />
       </div>
     );
   }
 }
 
-export default GifBox;
+export default connect(null, {toggleFavGif})(GifBox);
+

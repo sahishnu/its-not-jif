@@ -10,13 +10,19 @@ class GifTable extends Component {
   }
 
   render() {
-    const { gifData, gifPaginateData } = this.props;
-    const showMore = (gifData && gifData instanceof Array && gifData.length);
+    const { data, enableLoadMore, meta } = this.props;
+
+    const showTable = (data && data instanceof Array && data.length);
+    if (!showTable) {
+      return null;
+    }
+
+    const showMore = enableLoadMore && showTable;
     return (
       <div className='table-container'>
-        {/* <div className='table-meta'>Showing {gifPaginateData.count} of {gifPaginateData.total_count} </div> */}
+        <div className='table-meta'>{meta.total_count} gifs</div>
         <div className='table'>
-          {gifData.map((gif, index) => <GifBox key={index} data={gif} />)}
+          {data.map((gif, index) => <GifBox key={index} data={gif} />)}
         </div>
         <div className='more-container'>
           {showMore ?
@@ -29,9 +35,4 @@ class GifTable extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  gifData: state.gifReducer.gifData,
-  gifPaginateData: state.gifReducer.gifPaginateData
-});
-
-export default connect(mapStateToProps, {searchGifsAction})(GifTable);
+export default connect(null, {searchGifsAction})(GifTable);
