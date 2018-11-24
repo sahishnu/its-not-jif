@@ -1,13 +1,13 @@
 {
-  "main.css": "/its-not-jif/static/css/main.5e48c04f.chunk.css",
-  "main.js": "/its-not-jif/static/js/main.c8e18a38.chunk.js",
-  "main.js.map": "/its-not-jif/static/js/main.c8e18a38.chunk.js.map",
-  "static/js/1.6cd603f8.chunk.js": "/its-not-jif/static/js/1.6cd603f8.chunk.js",
-  "static/js/1.6cd603f8.chunk.js.map": "/its-not-jif/static/js/1.6cd603f8.chunk.js.map",
+  "main.css": "/its-not-jif/static/css/main.24478643.chunk.css",
+  "main.js": "/its-not-jif/static/js/main.4f6346fe.chunk.js",
+  "main.js.map": "/its-not-jif/static/js/main.4f6346fe.chunk.js.map",
+  "static/js/1.46ddb5ad.chunk.js": "/its-not-jif/static/js/1.46ddb5ad.chunk.js",
+  "static/js/1.46ddb5ad.chunk.js.map": "/its-not-jif/static/js/1.46ddb5ad.chunk.js.map",
   "runtime~main.js": "/its-not-jif/static/js/runtime~main.1c806ffc.js",
   "runtime~main.js.map": "/its-not-jif/static/js/runtime~main.1c806ffc.js.map",
-  "static/css/main.5e48c04f.chunk.css.map": "/its-not-jif/static/css/main.5e48c04f.chunk.css.map",
+  "static/css/main.24478643.chunk.css.map": "/its-not-jif/static/css/main.24478643.chunk.css.map",
   "index.html": "/its-not-jif/index.html",
-  "precache-manifest.2c999a737759cdc09902208af0d5d413.js": "/its-not-jif/precache-manifest.2c999a737759cdc09902208af0d5d413.js",
+  "precache-manifest.e16f9b8919ce38320de65cc575e42ff4.js": "/its-not-jif/precache-manifest.e16f9b8919ce38320de65cc575e42ff4.js",
   "service-worker.js": "/its-not-jif/service-worker.js"
 }
