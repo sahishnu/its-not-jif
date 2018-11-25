@@ -13,4 +13,10 @@
     color: white;
     text-decoration: none;
   }
+
+  .active-link {
+    color: $orange-yellow;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+  }
 }

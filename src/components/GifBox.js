@@ -81,7 +81,7 @@ class GifBox extends Component {
     return (
       <div onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} className='gif-box-container'>
         {hoverMessage && <div className='message-box'>{hoverMessage}</div>}
-        {hover && <div className={'gif-hover-box' + (hover ? ' active' : '')}>
+        {(!hoverMessage && hover) && <div className={'gif-hover-box' + (hover ? ' active' : '')}>
           <div className='hover-box-buttons'>
             <i onClick={this.handleClickCopyLink} className='fa fa-link'></i>
             <i onClick={this.handleClickFavorte} className={starClasses.join(' ')}></i>
