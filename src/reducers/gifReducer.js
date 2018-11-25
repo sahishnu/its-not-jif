@@ -3,23 +3,30 @@ import { GIF_DATA_ACTIONS } from '../actions';
 export default (state = {
   gifData: [],
   gifPaginateData: {},
-  favorites: []
+  favorites: [],
+  loading: false
 }, action) => {
   switch (action.type) {
     case GIF_DATA_ACTIONS.SEARCH_GIFS:
       return { ...state,
         gifData: action.payload.gifData,
-        gifPaginateData: action.payload.gifPaginateData
+        gifPaginateData: action.payload.gifPaginateData,
+        loading: false
       };
     case GIF_DATA_ACTIONS.APPEND_GIFS:
       return { ...state,
         gifData: [...state.gifData, ...action.payload.gifData],
-        gifPaginateData: action.payload.gifPaginateData
+        gifPaginateData: action.payload.gifPaginateData,
+        loading: false
       };
     case GIF_DATA_ACTIONS.FAV_GIF:
       return { ...state,
         favorites: action.payload
       };
+    case GIF_DATA_ACTIONS.LOADING_START:
+      return { ...state,
+        loading: true
+      }
     default:
       return state
   }

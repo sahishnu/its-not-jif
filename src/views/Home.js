@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import GifTable from '../components/GifTable';
 import { getPathParams } from '../util/pathHelper';
 import { updateSearchValueAction, searchGifsAction } from '../actions/searchActions';
@@ -37,10 +38,10 @@ class Home extends Component {
   }
 
   render() {
-    const { gifData, gifPaginateData } = this.props;
+    const { gifData, gifPaginateData, isLoading } = this.props;
     return (
-      <div className='home-view'>
-        <GifTable enableLoadMore meta={gifPaginateData} data={gifData} />
+      <div className='home-view view'>
+        <GifTable isLoading={isLoading} enableLoadMore meta={gifPaginateData} data={gifData} />
       </div>
     );
   }
@@ -48,7 +49,18 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   gifData: state.gifReducer.gifData,
-  gifPaginateData: state.gifReducer.gifPaginateData
+  gifPaginateData: state.gifReducer.gifPaginateData,
+  isLoading: state.gifReducer.loading
 });
 
 export default connect(mapStateToProps, {updateSearchValueAction, searchGifsAction, clearGifData})(Home);
+
+Home.propTypes = {
+  gifData: PropTypes.array.isRequired,
+  gifPaginateData: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  updateSearchValueAction: PropTypes.func.isRequired,
+  searchGifsAction: PropTypes.func.isRequired,
+  clearGifData: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
+}

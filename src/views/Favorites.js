@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {FAVORITES} from '../config';
 import GifTable from '../components/GifTable';
 import { updateSearchValueAction } from '../actions/searchActions';
 class Favorites extends Component {
@@ -25,8 +25,9 @@ class Favorites extends Component {
   render() {
     const { data, paginateData } = this.setFavorites();
     return (
-      <div className='favorites-view'>
-        <GifTable meta={paginateData} data={data} />
+      <div className='favorites-view view'>
+        {(data.length === 0) && <div>No favorite gifs!</div>}
+        <GifTable isLoading={false} meta={paginateData} data={data} />
       </div>
     );
   }
@@ -37,3 +38,8 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {updateSearchValueAction})(Favorites);
+
+Favorites.propTypes = {
+  favorites: PropTypes.array.isRequired,
+  updateSearchValueAction: PropTypes.func.isRequired
+}

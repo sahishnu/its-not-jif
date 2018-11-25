@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { toggleFavGif } from '../actions/gifActions';
 import { connect } from 'react-redux';
 import ImageContainer from './ImageContainer';
@@ -19,11 +21,16 @@ class GifBox extends Component {
 
   setHoverMessage = (message) => {
     this.setState({ hoverMessage: message});
-    setTimeout(3000, this.setState({ hoverMessage: ''}));
+    setTimeout(() => this.setState({ hoverMessage: ''}), 2000);
   }
 
   handleClickFavorte = () => {
-    this.setHoverMessage('Gif Favorited!');
+    const { favorite } = this.state;
+    if (favorite) {
+      this.setHoverMessage('Gif Unfavorited!');
+    } else {
+      this.setHoverMessage('Gif Favorited!');
+    }
     this.setState(this.toggleFavoriteState, () => {
       const gif = this.props.data;
       this.props.toggleFavGif({
@@ -73,8 +80,8 @@ class GifBox extends Component {
     }
     return (
       <div onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} className='gif-box-container'>
+        {hoverMessage && <div className='message-box'>{hoverMessage}</div>}
         {hover && <div className={'gif-hover-box' + (hover ? ' active' : '')}>
-          {hoverMessage && <div>{hoverMessage}</div>}
           <div className='hover-box-buttons'>
             <i onClick={this.handleClickCopyLink} className='fa fa-link'></i>
             <i onClick={this.handleClickFavorte} className={starClasses.join(' ')}></i>
@@ -87,4 +94,9 @@ class GifBox extends Component {
 }
 
 export default connect(null, {toggleFavGif})(GifBox);
+
+GifBox.propTypes = {
+  data: PropTypes.object.isRequired,
+  toggleFavGif: PropTypes.func.isRequired
+}
 

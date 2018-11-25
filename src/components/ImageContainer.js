@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { PASTEL_COLORS } from '../config';
 
 class ImageContainer extends Component {
@@ -27,4 +28,9 @@ class ImageContainer extends Component {
 }
 
 export default ImageContainer;
+
+ImageContainer.propTypes = {
+  source: PropTypes.string.isRequired,
+  altText: PropTypes.string.isRequired
+}
 

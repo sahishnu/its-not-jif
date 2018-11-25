@@ -3,7 +3,7 @@ import { SEARCH_ACTIONS, GIF_DATA_ACTIONS } from '../actions';
 
 export function searchGifsAction (loadMore) {
   return async (dispatch, getState) => {
-
+    dispatch({ type: GIF_DATA_ACTIONS.LOADING_START });
     if (loadMore) {
       dispatch({ type: SEARCH_ACTIONS.INCREMENT_PAGE_NUMBER });
     } else {
