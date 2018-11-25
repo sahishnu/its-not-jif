@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/its-not-jif/static/css/main.10ee88ad.chunk.css"
   },
   {
-    "revision": "ada04da6538949c595b7b2db1323b801",
+    "revision": "c86dfea54601373cbcf0522f9702b89e",
     "url": "/its-not-jif/index.html"
   }
 ];
