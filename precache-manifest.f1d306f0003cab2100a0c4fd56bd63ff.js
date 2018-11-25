@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/its-not-jif/static/js/runtime~main.1c806ffc.js"
   },
   {
-    "revision": "4f6346fe68d7c42fcb7a",
-    "url": "/its-not-jif/static/js/main.4f6346fe.chunk.js"
+    "revision": "d660173f2b906df209f7",
+    "url": "/its-not-jif/static/js/main.d660173f.chunk.js"
   },
   {
     "revision": "46ddb5ad79b71adce060",
     "url": "/its-not-jif/static/js/1.46ddb5ad.chunk.js"
   },
   {
-    "revision": "4f6346fe68d7c42fcb7a",
-    "url": "/its-not-jif/static/css/main.24478643.chunk.css"
+    "revision": "d660173f2b906df209f7",
+    "url": "/its-not-jif/static/css/main.10ee88ad.chunk.css"
   },
   {
-    "revision": "e472888fb11026589647d7c06fcc0e68",
+    "revision": "ada04da6538949c595b7b2db1323b801",
     "url": "/its-not-jif/index.html"
   }
 ];
