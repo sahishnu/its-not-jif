@@ -1,0 +1,15 @@
+.home-view {
+  .error-container {
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .error-message {
+      margin-bottom: 1rem;
+    }
+
+    .error-icon {
+      font-size: 2.5rem;
+    }
+  }
+}

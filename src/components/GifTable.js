@@ -11,6 +11,7 @@ class GifTable extends Component {
     this.props.searchGifsAction(true);
   }
 
+  // render number of total gifs
   renderTotalGifs = () => {
     const { data, meta } = this.props;
 
@@ -27,6 +28,7 @@ class GifTable extends Component {
     return null;
   }
 
+  // render spinner if network request is pending
   renderLoader = () => {
     const { isLoading } = this.props;
 
@@ -41,6 +43,7 @@ class GifTable extends Component {
     }
   }
 
+  // render all gifs in GifBox
   renderGifs = () => {
     const { data } = this.props;
     const gifs = data.map((gif, index) => <GifBox key={index} data={gif} />);
@@ -51,6 +54,7 @@ class GifTable extends Component {
     }
   }
 
+  // render show more button
   renderShowMoreButton = () => {
     const { data, enableLoadMore, meta } = this.props;
     const showTable = !!(data && data instanceof Array && data.length);

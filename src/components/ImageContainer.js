@@ -7,7 +7,8 @@ class ImageContainer extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      loaded: false
+      loaded: false,
+      bgc: 'white'
     }
   }
 
@@ -15,12 +16,19 @@ class ImageContainer extends Component {
     this.setState({ loaded: true }, );
   }
 
+  componentDidMount () {
+    this.setState({ bgc: this.getRandomPasteleColor()})
+  }
+
+  getRandomPasteleColor = () => {
+    return PASTEL_COLORS[Math.floor(Math.random()*PASTEL_COLORS.length)];
+  }
+
   render() {
     const { source, altText } = this.props;
-    const { loaded } = this.state;
-    const randomColor = PASTEL_COLORS[Math.floor(Math.random()*PASTEL_COLORS.length)];
+    const { loaded, bgc } = this.state;
     return (
-      <div style={{ backgroundColor: randomColor}} className='gif-placeholder'>
+      <div style={{ backgroundColor: bgc}} className='gif-placeholder'>
         <img alt={altText} onLoad={this.handleImageLoaded} className={`gif ` + (loaded ? `loaded` : '')} src={source} />
       </div>
     );

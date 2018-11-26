@@ -40,11 +40,26 @@ class Home extends Component {
     }
   }
 
+  // render error message if one occurs
+  renderErrorMessage = () => {
+    const { searchError } = this.props;
+
+    if (searchError) {
+      return (
+      <div className='error-container'>
+        <div className='error-message'>Sorry, an error has occurred!</div>
+        <i className='fa fa-exclamation-triangle error-icon'></i>
+      </div>);
+    } else {
+      return null;
+    }
+  }
+
   render() {
-    const { gifData, gifPaginateData, isLoading, searchError } = this.props;
+    const { gifData, gifPaginateData, isLoading } = this.props;
     return (
       <div className='home-view view'>
-        {searchError && <div>Sorry, an error has occurred!</div>}
+        {this.renderErrorMessage()}
         <GifTable isLoading={isLoading} enableLoadMore meta={gifPaginateData} data={gifData} />
       </div>
     );
