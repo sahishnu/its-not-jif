@@ -9,7 +9,7 @@ export default function searchGifsAPI (searchValue, page) {
     return data;
   })
   .catch((err) => {
-    console.log(err);
+    return err;
   })
 }
 

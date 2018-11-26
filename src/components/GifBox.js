@@ -13,6 +13,7 @@ class GifBox extends Component {
       favorite: false,
       hoverMessage: ''
     }
+    this.timeout = null;
   }
 
   handleMouseHover = () => {
@@ -21,7 +22,7 @@ class GifBox extends Component {
 
   setHoverMessage = (message) => {
     this.setState({ hoverMessage: message});
-    setTimeout(() => this.setState({ hoverMessage: ''}), 2000);
+    this.timeout = setTimeout(() => this.setState({ hoverMessage: ''}), 2000);
   }
 
   handleClickFavorte = () => {
@@ -36,9 +37,14 @@ class GifBox extends Component {
       this.props.toggleFavGif({
         id: gif.id,
         url: gif.url,
-        images: gif.images
+        images: gif.images,
+        title: gif.title
       });
     });
+  }
+
+  componentWillUnmount () {
+    clearTimeout(this.timeout)
   }
 
   componentDidMount () {

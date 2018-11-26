@@ -6,6 +6,7 @@ import { getPathParams } from '../util/pathHelper';
 import { updateSearchValueAction, searchGifsAction } from '../actions/searchActions';
 import { clearGifData } from '../actions/gifActions';
 
+// Gif data will come from gifData in redux store
 class Home extends Component {
 
   componentDidUpdate (prevProps) {
@@ -21,8 +22,9 @@ class Home extends Component {
 
   componentDidMount () {
     const { location } = this.props;
-    let { pathname } = location;
+    let { pathname } = location; // will give path value after base path
     const pathParams = getPathParams(pathname);
+    // if path '/search/{SOME_VALUE}' then make a search for {SOME_VALUE}
     if (pathParams.length === 2) {
       const searchValue = pathParams[1];
       const event = {
@@ -33,14 +35,16 @@ class Home extends Component {
       this.props.updateSearchValueAction(event);
       this.props.searchGifsAction();
     } else if (pathParams[0] === '') {
+      // if back at base path, clear gifs
       this.props.clearGifData()
     }
   }
 
   render() {
-    const { gifData, gifPaginateData, isLoading } = this.props;
+    const { gifData, gifPaginateData, isLoading, searchError } = this.props;
     return (
       <div className='home-view view'>
+        {searchError && <div>Sorry, an error has occurred!</div>}
         <GifTable isLoading={isLoading} enableLoadMore meta={gifPaginateData} data={gifData} />
       </div>
     );
@@ -50,7 +54,8 @@ class Home extends Component {
 const mapStateToProps = state => ({
   gifData: state.gifReducer.gifData,
   gifPaginateData: state.gifReducer.gifPaginateData,
-  isLoading: state.gifReducer.loading
+  isLoading: state.gifReducer.loading,
+  searchError: state.gifReducer.searchError
 });
 
 export default connect(mapStateToProps, {updateSearchValueAction, searchGifsAction, clearGifData})(Home);

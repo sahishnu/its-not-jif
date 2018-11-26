@@ -4,7 +4,8 @@ export default (state = {
   gifData: [],
   gifPaginateData: {},
   favorites: [],
-  loading: false
+  loading: false,
+  searchError: false
 }, action) => {
   switch (action.type) {
     case GIF_DATA_ACTIONS.SEARCH_GIFS:
@@ -25,7 +26,13 @@ export default (state = {
       };
     case GIF_DATA_ACTIONS.LOADING_START:
       return { ...state,
-        loading: true
+        loading: true,
+        searchError: false
+      }
+    case GIF_DATA_ACTIONS.SEARCH_ERROR:
+      return { ...state,
+        searchError: true,
+        loading: false
       }
     default:
       return state

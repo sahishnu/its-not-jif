@@ -7,6 +7,9 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import configureStore from './store';
 
+/**
+ * Wrapp App component in Redux store provider & browser router
+ */
 ReactDOM.render(
   <Provider store={configureStore()}>
     <BrowserRouter>

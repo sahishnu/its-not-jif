@@ -17,17 +17,23 @@ export function searchGifsAction (loadMore) {
     const currentSearchValue = searchReducerData.searchValue;
     const currentFavoriteIds = gifReducerData.favorites.map(gif => gif.id);
     const gifData = await searchGifsAPI(currentSearchValue, currentPageValue);
-    gifData.data.forEach(gif => {
-      if (currentFavoriteIds.includes(gif.id)) {
-        gif.isFav = true;
+
+    if (gifData && gifData.data) {
+      gifData.data.forEach(gif => {
+        if (currentFavoriteIds.includes(gif.id)) {
+          gif.isFav = true;
+        }
+        return gif;
+      });
+      if (loadMore) {
+        dispatch({ type: GIF_DATA_ACTIONS.APPEND_GIFS, payload: { gifData: gifData.data, gifPaginateData: gifData.pagination } });
+      } else {
+        dispatch({ type: GIF_DATA_ACTIONS.SEARCH_GIFS, payload: { gifData: gifData.data, gifPaginateData: gifData.pagination } });
       }
-      return gif;
-    });
-    if (loadMore) {
-      dispatch({ type: GIF_DATA_ACTIONS.APPEND_GIFS, payload: { gifData: gifData.data, gifPaginateData: gifData.pagination } });
     } else {
-      dispatch({ type: GIF_DATA_ACTIONS.SEARCH_GIFS, payload: { gifData: gifData.data, gifPaginateData: gifData.pagination } });
+      dispatch({ type: GIF_DATA_ACTIONS.SEARCH_ERROR });
     }
+
   };
 };
 
