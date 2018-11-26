@@ -3,7 +3,7 @@ import Home from '../views/Home';
 import Favorites from '../views/Favorites';
 import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
-
+import Footer from './Footer';
 // Main wrapper component for app
 class App extends Component {
   render() {
@@ -18,6 +18,7 @@ class App extends Component {
           <Route path='/' component={Home} />
         </Switch>
         <Header classname='footer-container' />
+        <Footer />
       </div>
     );
   }

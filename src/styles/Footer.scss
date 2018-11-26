@@ -1,0 +1,18 @@
+.footer-info {
+  background-color: $granite;
+  position: sticky;
+  bottom: 0;
+  top: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+
+  .link {
+    color: white;
+    padding-left: 1rem;
+  }
+}
